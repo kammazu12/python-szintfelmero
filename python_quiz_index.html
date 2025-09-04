@@ -1,0 +1,497 @@
+<!doctype html>
+<html lang="hu">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Python alapok kvíz — 10. osztály</title>
+  <style>
+    /* Minimalista, letisztult CSS - egyszerű és jól kinéző */
+    :root{
+      --bg:#0f1724; /* sötétkék háttér */
+      --card:#0b1220;
+      --accent:#7dd3fc; /* világoskék */
+      --muted:#94a3b8;
+      --glass: rgba(255,255,255,0.03);
+      --radius:12px;
+      --maxw:980px;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      color-scheme: dark;
+    }
+    html,body{height:100%;}
+    body{
+      margin:0;
+      background:linear-gradient(180deg, #07101a 0%, var(--bg) 100%);
+      display:flex;
+      justify-content:center;
+      padding:28px 18px;
+      color:#e6eef6;
+      -webkit-font-smoothing:antialiased;
+    }
+    .wrap{
+      width:100%;
+      max-width:var(--maxw);
+    }
+    header{
+      display:flex;
+      gap:18px;
+      align-items:center;
+      margin-bottom:18px;
+    }
+    .brand{
+      background:linear-gradient(135deg, rgba(125,211,252,0.15), rgba(99,102,241,0.06));
+      padding:10px 14px;
+      border-radius:12px;
+      box-shadow:0 6px 20px rgba(2,6,23,0.6);
+    }
+    h1{margin:0;font-size:20px}
+    p.lead{margin:0;color:var(--muted);font-size:13px}
+
+    main.card{
+      background:linear-gradient(180deg, rgba(255,255,255,0.02), var(--card));
+      border-radius:var(--radius);
+      padding:18px;
+      box-shadow:0 8px 30px rgba(2,6,23,0.6);
+    }
+
+    section{
+      margin-top:14px;
+      padding:12px;
+      background:var(--glass);
+      border-radius:10px;
+    }
+
+    h2{font-size:15px;margin:6px 0}
+    label.question{display:block;margin:10px 0;font-size:14px}
+
+    .choices{display:flex;flex-direction:column;gap:6px;margin-top:6px}
+    .choice{display:flex;gap:8px;align-items:center}
+    input[type=radio], input[type=checkbox]{transform:scale(1.05)}
+
+    input[type=text], textarea{
+      width:100%;
+      padding:8px 10px;
+      border-radius:8px;
+      border:1px solid rgba(255,255,255,0.04);
+      background:transparent;color:inherit;font-size:14px;
+      outline:none;resize:vertical;min-height:40px
+    }
+
+    .actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}
+    button{background:var(--accent);color:#042029;border:none;padding:8px 12px;border-radius:10px;cursor:pointer;font-weight:600}
+    button.ghost{background:transparent;border:1px solid rgba(255,255,255,0.04);color:var(--muted);font-weight:600}
+
+    .result{margin-top:12px;padding:10px;border-radius:8px;background:rgba(125,211,252,0.06);color:var(--accent);font-weight:700}
+
+    .grid{display:grid;grid-template-columns:1fr 320px;gap:14px}
+    @media (max-width:920px){.grid{grid-template-columns:1fr}}
+
+    aside.side{
+      padding:12px;background:linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.02));border-radius:10px;font-size:13px;color:var(--muted)
+    }
+
+    footer{color:var(--muted);font-size:13px;margin-top:12px}
+
+    details[open] summary::after{content:" (bezárható)";font-size:12px;color:var(--muted)}
+    summary{cursor:pointer}
+
+    .wrong{color:#ffb4b4}
+    .correct{color:#b7f5d0}
+
+    .question-meta{font-size:12px;color:var(--muted)}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <div class="brand">
+        <strong>Python alapok — 10. osztály</strong>
+      </div>
+      <div>
+        <h1>45 kérdéses vegyes kvíz</h1>
+        <p class="lead">Feleletválasztó, behelyettesítéses és programíró feladatok — előre megírt automatikus javítással a feleletválasztókhoz.</p>
+      </div>
+    </header>
+
+    <main class="card">
+      <div class="grid">
+        <div>
+          <!-- QUIZ FORM START -->
+          <form id="quizForm">
+            <!-- I. Feleletválasztós (20) -->
+            <section id="mc-section">
+              <h2>I. Feleletválasztós kérdések (20)</h2>
+
+              <!-- Questions 1..20 -->
+
+              <!-- 1 -->
+              <label class="question">1. Melyik helyes változónév Pythonban?</label>
+              <div class="choices">
+                <label class="choice"><input type="radio" name="q1" value="a"> a) 2adat</label>
+                <label class="choice"><input type="radio" name="q1" value="b"> b) adat_2</label>
+                <label class="choice"><input type="radio" name="q1" value="c"> c) adat-2</label>
+                <label class="choice"><input type="radio" name="q1" value="d"> d) print</label>
+              </div>
+
+              <!-- 2 -->
+              <label class="question">2. Mi lesz a <code>print(type(3.14))</code> kimenete?</label>
+              <div class="choices">
+                <label class="choice"><input type="radio" name="q2" value="a"> a) &lt;class 'int'&gt;</label>
+                <label class="choice"><input type="radio" name="q2" value="b"> b) &lt;class 'float'&gt;</label>
+                <label class="choice"><input type="radio" name="q2" value="c"> c) &lt;class 'double'&gt;</label>
+                <label class="choice"><input type="radio" name="q2" value="d"> d) &lt;class 'str'&gt;</label>
+              </div>
+
+              <!-- 3 -->
+              <label class="question">3. Melyik operátor végzi az egész osztást?</label>
+              <div class="choices">
+                <label class="choice"><input type="radio" name="q3" value="a"> a) /</label>
+                <label class="choice"><input type="radio" name="q3" value="b"> b) //</label>
+                <label class="choice"><input type="radio" name="q3" value="c"> c) %</label>
+                <label class="choice"><input type="radio" name="q3" value="d"> d) **</label>
+              </div>
+
+              <!-- 4 -->
+              <label class="question">4. Mit ad vissza a <code>len("Python")</code>?</label>
+              <div class="choices">
+                <label class="choice"><input type="radio" name="q4" value="a"> a) 5</label>
+                <label class="choice"><input type="radio" name="q4" value="b"> b) 6</label>
+                <label class="choice"><input type="radio" name="q4" value="c"> c) "Python"</label>
+                <label class="choice"><input type="radio" name="q4" value="d"> d) Hibaüzenet</label>
+              </div>
+
+              <!-- 5 -->
+              <label class="question">5. Melyik állítás igaz?</label>
+              <div class="choices">
+                <label class="choice"><input type="radio" name="q5" value="a"> a) A stringek módosíthatók.</label>
+                <label class="choice"><input type="radio" name="q5" value="b"> b) A listák módosíthatók.</label>
+                <label class="choice"><input type="radio" name="q5" value="c"> c) A tuple elemei szabadon cserélhetők.</label>
+                <label class="choice"><input type="radio" name="q5" value="d"> d) A szótár (dict) nem tartalmazhat kulcs-érték párokat.</label>
+              </div>
+
+              <!-- 6 -->
+              <label class="question">6. Mit ad a <code>3 ** 2</code>?</label>
+              <div class="choices">
+                <label class="choice"><input type="radio" name="q6" value="a"> a) 6</label>
+                <label class="choice"><input type="radio" name="q6" value="b"> b) 9</label>
+                <label class="choice"><input type="radio" name="q6" value="c"> c) 8</label>
+                <label class="choice"><input type="radio" name="q6" value="d"> d) 32</label>
+              </div>
+
+              <!-- 7 -->
+              <label class="question">7. Hogyan írjuk helyesen a logikai értékeket?</label>
+              <div class="choices">
+                <label class="choice"><input type="radio" name="q7" value="a"> a) TRUE, FALSE</label>
+                <label class="choice"><input type="radio" name="q7" value="b"> b) true, false</label>
+                <label class="choice"><input type="radio" name="q7" value="c"> c) True, False</label>
+                <label class="choice"><input type="radio" name="q7" value="d"> d) 1, 0</label>
+              </div>
+
+              <!-- 8 -->
+              <label class="question">8. Mit ad <code>10 % 3</code>?</label>
+              <div class="choices">
+                <label class="choice"><input type="radio" name="q8" value="a"> a) 3</label>
+                <label class="choice"><input type="radio" name="q8" value="b"> b) 1</label>
+                <label class="choice"><input type="radio" name="q8" value="c"> c) 0.333...</label>
+                <label class="choice"><input type="radio" name="q8" value="d"> d) 30</label>
+              </div>
+
+              <!-- 9 -->
+              <label class="question">9. Melyik függvény alakít át egész számmá?</label>
+              <div class="choices">
+                <label class="choice"><input type="radio" name="q9" value="a"> a) str()</label>
+                <label class="choice"><input type="radio" name="q9" value="b"> b) int()</label>
+                <label class="choice"><input type="radio" name="q9" value="c"> c) float()</label>
+                <label class="choice"><input type="radio" name="q9" value="d"> d) chr()</label>
+              </div>
+
+              <!-- 10 -->
+              <label class="question">10. Mi történik, ha lefut ez a kód? <pre style="display:inline">szam = 5\nprint(szam == 5)</pre></label>
+              <div class="choices">
+                <label class="choice"><input type="radio" name="q10" value="a"> a) Kiírja: True</label>
+                <label class="choice"><input type="radio" name="q10" value="b"> b) Kiírja: 5</label>
+                <label class="choice"><input type="radio" name="q10" value="c"> c) Hibaüzenet</label>
+                <label class="choice"><input type="radio" name="q10" value="d"> d) Kiírja: szam</label>
+              </div>
+
+              <!-- 11 -->
+              <label class="question">11. Melyik a helyes <code>if</code> szerkezet?</label>
+              <div class="choices">
+                <label class="choice"><input type="radio" name="q11" value="a"> a) if szam = 5: ...</label>
+                <label class="choice"><input type="radio" name="q11" value="b"> b) if szam == 5: ...</label>
+                <label class="choice"><input type="radio" name="q11" value="c"> c) if szam := 5: ...</label>
+                <label class="choice"><input type="radio" name="q11" value="d"> d) if szam =&gt; 5: ...</label>
+              </div>
+
+              <!-- 12 -->
+              <label class="question">12. Mit ad vissza: <code>"alma" + "fa"</code>?</label>
+              <div class="choices">
+                <label class="choice"><input type="radio" name="q12" value="a"> a) "alma fa"</label>
+                <label class="choice"><input type="radio" name="q12" value="b"> b) "almafa"</label>
+                <label class="choice"><input type="radio" name="q12" value="c"> c) alma+fa</label>
+                <label class="choice"><input type="radio" name="q12" value="d"> d) Hibaüzenet</label>
+              </div>
+
+              <!-- 13 -->
+              <label class="question">13. Hogyan hozunk létre üres listát?</label>
+              <div class="choices">
+                <label class="choice"><input type="radio" name="q13" value="a"> a) lista = ()</label>
+                <label class="choice"><input type="radio" name="q13" value="b"> b) lista = []</label>
+                <label class="choice"><input type="radio" name="q13" value="c"> c) lista = {}</label>
+                <label class="choice"><input type="radio" name="q13" value="d"> d) lista = ""</label>
+              </div>
+
+              <!-- 14 -->
+              <label class="question">14. Mi lesz a következő kód kimenete? <pre style="display:inline">for i in range(3):\n    print(i)</pre></label>
+              <div class="choices">
+                <label class="choice"><input type="radio" name="q14" value="a"> a) 1 2 3</label>
+                <label class="choice"><input type="radio" name="q14" value="b"> b) 0 1 2</label>
+                <label class="choice"><input type="radio" name="q14" value="c"> c) 0 1 2 3</label>
+                <label class="choice"><input type="radio" name="q14" value="d"> d) 3 2 1</label>
+              </div>
+
+              <!-- 15 -->
+              <label class="question">15. Hogyan kell függvényt definiálni?</label>
+              <div class="choices">
+                <label class="choice"><input type="radio" name="q15" value="a"> a) def fuggveny:</label>
+                <label class="choice"><input type="radio" name="q15" value="b"> b) def fuggveny():</label>
+                <label class="choice"><input type="radio" name="q15" value="c"> c) function fuggveny():</label>
+                <label class="choice"><input type="radio" name="q15" value="d"> d) fuggveny def():</label>
+              </div>
+
+              <!-- 16 -->
+              <label class="question">16. Mi a <code>break</code> utasítás szerepe ciklusban?</label>
+              <div class="choices">
+                <label class="choice"><input type="radio" name="q16" value="a"> a) Megszakítja a ciklust.</label>
+                <label class="choice"><input type="radio" name="q16" value="b"> b) Újraindítja a ciklust.</label>
+                <label class="choice"><input type="radio" name="q16" value="c"> c) Egy elemet átugrik.</label>
+                <label class="choice"><input type="radio" name="q16" value="d"> d) Várakoztatja a programot.</label>
+              </div>
+
+              <!-- 17 -->
+              <label class="question">17. Mi a <code>continue</code> utasítás szerepe ciklusban?</label>
+              <div class="choices">
+                <label class="choice"><input type="radio" name="q17" value="a"> a) Megállítja a ciklust.</label>
+                <label class="choice"><input type="radio" name="q17" value="b"> b) A következő iterációra ugrik.</label>
+                <label class="choice"><input type="radio" name="q17" value="c"> c) Visszaállítja a ciklust az elejére.</label>
+                <label class="choice"><input type="radio" name="q17" value="d"> d) Hibát okoz.</label>
+              </div>
+
+              <!-- 18 -->
+              <label class="question">18. Hogyan nyitunk meg fájlt olvasásra?</label>
+              <div class="choices">
+                <label class="choice"><input type="radio" name="q18" value="a"> a) open("adat.txt")</label>
+                <label class="choice"><input type="radio" name="q18" value="b"> b) open("adat.txt", "r")</label>
+                <label class="choice"><input type="radio" name="q18" value="c"> c) file("adat.txt")</label>
+                <label class="choice"><input type="radio" name="q18" value="d"> d) read("adat.txt")</label>
+              </div>
+
+              <!-- 19 -->
+              <label class="question">19. Mit ad vissza a <code>len([])</code>?</label>
+              <div class="choices">
+                <label class="choice"><input type="radio" name="q19" value="a"> a) 1</label>
+                <label class="choice"><input type="radio" name="q19" value="b"> b) 0</label>
+                <label class="choice"><input type="radio" name="q19" value="c"> c) None</label>
+                <label class="choice"><input type="radio" name="q19" value="d"> d) Hibaüzenet</label>
+              </div>
+
+              <!-- 20 -->
+              <label class="question">20. Mit csinál a <code>print("Python"[0])</code>?</label>
+              <div class="choices">
+                <label class="choice"><input type="radio" name="q20" value="a"> a) Kiírja: "P"</label>
+                <label class="choice"><input type="radio" name="q20" value="b"> b) Kiírja: "y"</label>
+                <label class="choice"><input type="radio" name="q20" value="c"> c) Kiírja: "Python"</label>
+                <label class="choice"><input type="radio" name="q20" value="d"> d) Hibaüzenet</label>
+              </div>
+
+            </section>
+
+            <!-- II. Behelyettesítés / Kódkiegészítés (15) -->
+            <section id="fill-section">
+              <h2>II. Behelyettesítés / Kódkiegészítés (15)</h2>
+              <p class="question-meta">Ezeket a válaszokat a tanár kézzel is ellenőrizheti — a rendszer csak összegyűjti a beírt válaszokat.</p>
+
+              <!-- 21..35 as text inputs -->
+              <!-- We'll show the original prompts as placeholders so a diák könnyen kitölti -->
+
+              <label class="question">21. Egészítsd ki: <code>for i in range(1, ___):\n    print(i ** 2)</code></label>
+              <input type="text" name="q21" placeholder="Pl.: 6">
+
+              <label class="question">22. Hiányzó kulcsszó: <code>if x &gt; 10: ... ___ x == 10: ... else: ...</code></label>
+              <input type="text" name="q22" placeholder="Pl.: elif">
+
+              <label class="question">23. Egészítsd ki a függvény fejét: <code>___ osszeg(a, b):</code></label>
+              <input type="text" name="q23" placeholder="Pl.: def">
+
+              <label class="question">24. Lista első elemét írja ki: <code>lista = [10, 20, 30]\nprint(lista[___])</code></label>
+              <input type="text" name="q24" placeholder="Pl.: 0">
+
+              <label class="question">25. Kisbetűsítés: <code>szoveg = "HELLO"\nprint(szoveg.___())</code></label>
+              <input type="text" name="q25" placeholder="Pl.: lower">
+
+              <label class="question">26. Hurokszerkezet: <code>___ i in range(5):\n    print(i)</code></label>
+              <input type="text" name="q26" placeholder="Pl.: for">
+
+              <label class="question">27. Egészítsd ki: <code>while ___ &lt; 10:\n    print("folytatom")</code></label>
+              <input type="text" name="q27" placeholder="Pl.: i">
+
+              <label class="question">28. Típusátalakítás: <code>szam = "123"\nszam = ___(szam)</code></label>
+              <input type="text" name="q28" placeholder="Pl.: int">
+
+              <label class="question">29. Fájl írásra nyitása: <code>f = open("adat.txt", ___)</code></label>
+              <input type="text" name="q29" placeholder="Pl.: 'w'">
+
+              <label class="question">30. Lista elem hozzáadása: <code>lista = []\nlista.___(5)</code></label>
+              <input type="text" name="q30" placeholder="Pl.: append">
+
+              <label class="question">31. Hiányzó kulcsszó: <code>___ True:\n    print("végtelen ciklus")</code></label>
+              <input type="text" name="q31" placeholder="Pl.: while">
+
+              <label class="question">32. Kiegészítés: <code>for betu in "alma":\n    print(___)</code></label>
+              <input type="text" name="q32" placeholder="Pl.: betu">
+
+              <label class="question">33. Feltétel: <code>if ___ in [2, 4, 6]:\n    print("páros")</code></label>
+              <input type="text" name="q33" placeholder="Pl.: x">
+
+              <label class="question">34. Kiírjuk az "5" számot 5-ször: <code>for i in range(___):\n    print(5)</code></label>
+              <input type="text" name="q34" placeholder="Pl.: 5">
+
+              <label class="question">35. Listakomprehenzió: <code>negyzetek = [x**2 for x in ___]</code></label>
+              <input type="text" name="q35" placeholder="Pl.: range(1,6)">
+
+            </section>
+
+            <!-- III. Rövid programíró feladatok (10) -->
+            <section id="code-section">
+              <h2>III. Rövid programíró feladatok (10)</h2>
+              <p class="question-meta">Ide írhatják a diákok a megoldásokat — ezek automatikusan nem lesznek javítva, a tanár ellenőrzi őket.</p>
+
+              <label class="question">36. Bekér egy számot, és kiírja, hogy páros vagy páratlan:</label>
+              <textarea name="q36" placeholder="Ide írd a kódot (pl. if szám%2==0: ...)"></textarea>
+
+              <label class="question">37. Összeadja az 1–100 közötti számokat:</label>
+              <textarea name="q37" placeholder="Pl. sum(range(1,101))"></textarea>
+
+              <label class="question">38. Kiírja a szorzótáblát 1-től 10-ig:</label>
+              <textarea name="q38"></textarea>
+
+              <label class="question">39. Függvény: szám faktoriálisa:</label>
+              <textarea name="q39"></textarea>
+
+              <label class="question">40. Listából kiírja a legnagyobb számot:</label>
+              <textarea name="q40"></textarea>
+
+              <label class="question">41. Megszámolja, hány "a" van egy szövegben:</label>
+              <textarea name="q41"></textarea>
+
+              <label class="question">42. Kiírja egy fájlba az 1–10 közötti számokat:</label>
+              <textarea name="q42"></textarea>
+
+              <label class="question">43. Függvény: eldönti, hogy egy szám prím-e:</label>
+              <textarea name="q43"></textarea>
+
+              <label class="question">44. Addig kér be számokat, amíg a felhasználó 0-t nem ad meg:</label>
+              <textarea name="q44"></textarea>
+
+              <label class="question">45. Szótár: tárolja=név, életkor, város, majd kiírja őket:</label>
+              <textarea name="q45"></textarea>
+
+            </section>
+
+            <div class="actions">
+              <button type="button" id="gradeBtn">Ellenőrzés (auto: feleletválasztók)</button>
+              <button type="button" id="downloadBtn" class="ghost">Válaszok letöltése (JSON)</button>
+              <button type="reset" class="ghost">Űrlap törlése</button>
+            </div>
+
+            <div id="resultArea"></div>
+          </form>
+          <!-- QUIZ FORM END -->
+        </div>
+
+        <aside class="side">
+          <h3>Mit csinál ez az oldal?</h3>
+          <ul>
+            <li>A 20 feleletválasztós kérdést azonnal javítja a rendszer.</li>
+            <li>A 15 behelyettesítéses és 10 programíró feladatot a tanár kézzel nézi át.</li>
+            <li>A válaszokat JSON-ként le lehet tölteni, hogy könnyen importálható legyen Excelbe vagy a tanári rendszerbe.</li>
+          </ul>
+
+          <details>
+            <summary>Rövid telepítési útmutató (ingyenes URL-hez)</summary>
+            <ol>
+              <li>Hozz létre egy új GitHub repository-t. (pl. <code>python-quiz</code>)</li>
+              <li>Helyezd el ezt az <code>index.html</code> fájlt a repo gyökerébe és pushold fel.</li>
+              <li>GitHub Pages: Settings &gt; Pages &gt; Branch: main &gt; / (root) &gt; Save. A site a <code>https://<em>felhasználónév</em>.github.io/<em>repo</em></code> címen lesz elérhető.</li>
+              <li>Alternatív: Netlify Drop (drag &amp; drop az index.html), vagy Vercel — mindegyik ingyenes kezdőknek.</li>
+            </ol>
+          </details>
+
+          <p class="question-meta" style="margin-top:10px">Használat: A diák kitölti, rákattint az <em>Ellenőrzés</em>-re, majd a tanár letölti a JSON-t és manuálisan kijavítja a kódos feladatokat.</p>
+        </aside>
+      </div>
+
+      <footer>
+        <small>Jó kódolást — és ne feledd: a bugok a tanulás barátai. 😉</small>
+      </footer>
+    </main>
+  </div>
+
+  <script>
+    // Csak a feleletválasztós kérdések automatikus javítása
+    const correct = {
+      q1:'b',q2:'b',q3:'b',q4:'b',q5:'b',q6:'b',q7:'c',q8:'b',q9:'b',q10:'a',
+      q11:'b',q12:'b',q13:'b',q14:'b',q15:'b',q16:'a',q17:'b',q18:'b',q19:'b',q20:'a'
+    };
+
+    function gradeMC() {
+      let total = 0, correctCount=0; const wrongList = [];
+      for(let i=1;i<=20;i++){
+        total++;
+        const name = 'q'+i;
+        const radios = document.getElementsByName(name);
+        let given = null;
+        for(const r of radios) if(r.checked) given=r.value;
+        if(given===correct[name]) correctCount++; else wrongList.push({q:i,got:given});
+      }
+      return {total,correctCount,wrongList};
+    }
+
+    document.getElementById('gradeBtn').addEventListener('click',()=>{
+      const res = gradeMC();
+      const percent = Math.round((res.correctCount/res.total)*100);
+      const area = document.getElementById('resultArea');
+      area.innerHTML = `<div class="result">Automatikus javítás: ${res.correctCount} / ${res.total} (${percent}%)</div>`;
+      if(res.wrongList.length>0){
+        const list = document.createElement('div'); list.style.marginTop='8px';
+        list.innerHTML = '<strong>Hibás vagy kihagyott feleletválasztók:</strong><br>' + res.wrongList.map(x=>`Q${x.q} (${x.got || 'nincs válasz'})`).join(', ');
+        area.appendChild(list);
+      }
+
+      // scroll to result
+      area.scrollIntoView({behavior:'smooth',block:'center'});
+    });
+
+    // JSON letöltés
+    document.getElementById('downloadBtn').addEventListener('click',()=>{
+      const form = document.getElementById('quizForm');
+      const data = {};
+      const fd = new FormData(form);
+      for(const [k,v] of fd.entries()){
+        // ha többes mező (radio többször is lehet) akkor felülírjuk — jó itt
+        data[k]=v;
+      }
+      // annak, aki nem válaszolt a radiokra, jelöljük
+      for(let i=1;i<=20;i++){ if(!data['q'+i]) data['q'+i]=null; }
+      // programíró feladatok legyenek szövegként
+      for(let i=36;i<=45;i++){ if(!data['q'+i]) data['q'+i]=''; }
+
+      const meta = {generated: new Date().toISOString(), quiz:"Python alapok - 45"};
+      const payload = {meta,answers:data};
+      const blob = new Blob([JSON.stringify(payload,null,2)],{type:'application/json'});
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a'); a.href=url; a.download='python_quiz_answers.json'; document.body.appendChild(a); a.click(); a.remove(); URL.revokeObjectURL(url);
+    });
+
+  </script>
+</body>
+</html>
